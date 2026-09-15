@@ -1,3 +1,17 @@
+
+/* Accessibility Utilities */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* Variables Initialization */
 :root {
   /* Colors Variables */
@@ -273,6 +287,12 @@ button {
 .landing .background-forward-change {
   right: 30px;
 }
+.landing .background-backword-change,
+.landing .background-forward-change {
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
 @media (max-width: 768px) {
   .landing .background-backword-change {
     left: 10px;
@@ -420,8 +440,8 @@ button {
   .design img {
     display: none;
   }
-  .design figcaption {
-    width: 100% !important;
+  .design figure figcaption {
+    width: 100%;
   }
 }
 /* End Design Section */
@@ -450,7 +470,7 @@ button {
 }
 .portfolio .portfolio-content {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 400px), 1fr));
   gap: 100px;
 }
 .portfolio .portfolio-box {
@@ -484,11 +504,11 @@ button {
   color: var(--main-color);
   font-weight: bold;
 }
-.portfolio .container button {
+.portfolio .container > .portfolio-link {
   margin: 50px auto;
   display: block;
 }
-.portfolio .container button a {
+.portfolio .container > .portfolio-link {
   color: white;
   background-color: var(--main-color);
   text-decoration: none;
@@ -498,7 +518,7 @@ button {
   border: 1px solid transparent;
   transition: 0.3s;
 }
-.portfolio .container button a:hover {
+.portfolio .container > .portfolio-link:hover {
   background-color: white;
   color: var(--main-color);
   border-color: var(--main-color);
@@ -533,7 +553,7 @@ button {
   margin-top: 30px;
   margin-bottom: 30px;
 }
-.clip figcaption button {
+.clip figcaption .video-link {
   background-color: black;
   color: white;
   padding: 10px 25px;
@@ -541,7 +561,7 @@ button {
   cursor: pointer;
   text-transform: uppercase;
 }
-.clip figcaption button a {
+.clip figcaption .video-link {
   color: white;
 }
 @media (max-width: 768px) {
@@ -983,7 +1003,18 @@ button {
 }
 .contact .contact-info {
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .contact .contact-info {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-around;
+    text-align: start;
+  }
 }
 @media (min-width: 992px) {
   .contact .contact-info {
@@ -1059,3 +1090,12 @@ footer .copy-text span {
   color: var(--main-color);
 }
 /* End Footer Section */
+
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--main-color);
+  outline-offset: 4px;
+}
